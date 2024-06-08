@@ -20,7 +20,11 @@ const Stack = createNativeStackNavigator();
 
 const AuthPassed = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      contentStyle: {
+        backgroundColor: 'transparent'
+    }
+    }}>
       <Stack.Screen
         name={mainRouts.home}
         component={Home}
