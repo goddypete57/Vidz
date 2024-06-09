@@ -1,5 +1,6 @@
 const mainRouts = {
   home: 'Home',
+  Search:'search'
 
 };
 

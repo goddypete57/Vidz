@@ -39,7 +39,7 @@ const RootNavigator: React.FC = () => {
          <Image
           style={styles.background}
           source={ colorScheme=='dark' ?require('./assets/images/background.png'):require('./assets/images/lightMode.png')}
-          resizeMode="contain"
+          resizeMode="cover"
         />
     <NavigationContainer>
       {isLoading ? <Splash /> : <MainStack />}

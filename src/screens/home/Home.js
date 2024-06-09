@@ -13,8 +13,9 @@ import {Fonts, Font2} from '../../../assets/constant/Font';
 import LinearGradient from 'react-native-linear-gradient';
 import {AuthContext} from '../../../context/AuthContext';
 import {useContext} from 'react';
+import mainRouts from '../../navigations/routs/mainRouts';
 const {width, height} = Dimensions.get('window');
-export default Home = () => {
+export default Home = ({navigation}) => {
   const {colorScheme} = useContext(AuthContext);
   return (
     // <LinearGradient
@@ -22,121 +23,149 @@ export default Home = () => {
     //   style={styles.container}
     //   start={{x: 0.2, y: 0}}
     //   end={{x: 1, y: 0}}>
+    <View
+      style={{
+        height: '100%',
+        width: '100%',
+        paddingTop: Platform.OS == 'ios' ? 50 : 15,
+        paddingHorizontal: 16,
+        alignItems: 'center',
+      }}>
       <View
         style={{
-          height: '100%',
+          alignItems: 'flex-end',
+          paddingTop:20,
           width: '100%',
-          paddingTop: Platform.OS == 'ios' ? 60 : 15,
-          paddingHorizontal: 16,
+        }}>
+        {/* <View style={{alignItems: 'center', position: 'absolute'}}> */}
+        <ImageBackground
+          style={{height: 80, width: 120, alignItems: 'center'}}
+          source={
+            colorScheme == 'dark'
+              ? require('../../../assets/images/fram.png')
+              : require('../../../assets/images/frame.png')
+          }
+          resizeMode="contain">
+          <Image
+            style={{height: 30, width: 30, marginTop: 10}}
+            source={
+              colorScheme == 'dark'
+                ? require('../../../assets/images/person.png')
+                : require('../../../assets/images/person2.png')
+            }
+            resizeMode="contain"
+          />
+          <Text
+            style={{
+              color: colors[colorScheme].profileText,
+              marginTop: 7,
+              fontFamily: Font2.semiBold,
+              fontSize: 14,
+            }}>
+            My Profile
+          </Text>
+        </ImageBackground>
+
+        {/* </View> */}
+      </View>
+      <Text
+        style={{
+          color: colors[colorScheme].textDark,
+          textAlign: 'center',
+          fontFamily: Font2.regular,
+          fontSize: 18,
+          marginTop: 82,
+        }}>
+        Tap to Record a Video
+      </Text>
+
+      <View
+        style={{
+          borderWidth: 4,
+          borderColor: colors[colorScheme].ripple1,
+          width: 304,
+          height: 304,
+          borderRadius: 304 / 2,
           alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 21,
         }}>
         <View
           style={{
-            alignItems: 'flex-end',
-
-            width: '100%',
+            borderWidth: 31,
+            borderColor: colors[colorScheme].ripple1,
+            width: 260,
+            height: 260,
+            borderRadius: 304 / 2,
+            alignItems: 'center',
+            justifyContent: 'center',
           }}>
-          {/* <View style={{alignItems: 'center', position: 'absolute'}}> */}
-          <ImageBackground
-            style={{height: 80, width: 120, alignItems: 'center'}}
-            source={require('../../../assets/images/fram.png')}
-            resizeMode="contain">
-            <Image
-              style={{height: 30, width: 30, marginTop: 10}}
-              source={require('../../../assets/images/person.png')}
-              resizeMode="contain"
-            />
-            <Text
-              style={{
-                color: colors[colorScheme].white,
-                marginTop: 7,
-                fontFamily: Fonts.medium,
-                fontSize: 17,
-              }}>
-              My Profile
-            </Text>
-          </ImageBackground>
 
-          {/* </View> */}
+<View
+          style={{
+            borderWidth: 7,
+            borderColor: colors[colorScheme].ripple2,
+            width: 173,
+            height: 173,
+            borderRadius: 304 / 2,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+
+
+          <Image
+            style={{height: 124, width: 124}}
+            source={require('../../../assets/images/centerlogo.png')}
+            tintColor={colors[colorScheme].ripple2}
+            resizeMode="contain"
+          />
+          </View>
         </View>
+      </View>
+
+      <TouchableOpacity
+      onPress={()=>{
+        navigation.navigate(mainRouts.Search)
+      }}
+        style={{
+          width: 81,
+          height: 50,
+          borderWidth: 2,
+          borderRadius: 25,
+          marginTop: 51,
+          borderColor: colors[colorScheme].searchBorder,
+          backgroundColor:  colors[colorScheme].searchBackGround,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Image
+          style={{height: 30, width: 30}}
+          source={require('../../../assets/images/search.png')}
+          tintColor={colors[colorScheme].searchIconColor}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
+
+      <View style={{alignItems: 'center', bottom: Platform.OS=='ios'?40:10, position: 'absolute'}}>
+        <Image
+          style={{height: 30, width: 30}}
+          source={require('../../../assets/images/pullup.png')}
+          tintColor={colors[colorScheme].pullup}
+          resizeMode="contain"
+        />
+
         <Text
           style={{
             color: colors[colorScheme].textDark,
             textAlign: 'center',
-            fontFamily: Font2.regular,
-            fontSize: 18,
-            marginTop: 82,
+            fontFamily: Font2.semiBold,
+            fontSize: 14,
+            marginTop: 7,
           }}>
-          Tap to Record a Video
+          Pull Up to See Videos You May Like
         </Text>
-
-        <View
-          style={{
-            borderWidth: 4,
-            borderColor: 'rgba(0, 255, 0, 0.1)',
-            width: 304,
-            height: 304,
-            borderRadius: 304 / 2,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 21,
-          }}>
-          <View
-            style={{
-              borderWidth: 31,
-              borderColor: 'rgba(0, 255, 0, 0.1)',
-              width: 260,
-              height: 260,
-              borderRadius: 304 / 2,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Image
-              style={{height: 173, width: 173}}
-              source={require('../../../assets/images/ellipse_logo.png')}
-              resizeMode="contain"
-            />
-          </View>
-        </View>
-
-        <TouchableOpacity
-          style={{
-            width: 81,
-            height: 50,
-            borderWidth: 1,
-            borderRadius: 25,
-            marginTop: 51,
-            borderColor: 'rgba(233, 233, 233, 0.23)',
-            backgroundColor: 'rgba(255, 255, 255, 0.04)',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Image
-            style={{height: 30, width: 30}}
-            source={require('../../../assets/images/search.png')}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-
-        <View style={{alignItems: 'center', bottom: 40, position: 'absolute'}}>
-          <Image
-            style={{height: 30, width: 30}}
-            source={require('../../../assets/images/pullup.png')}
-            resizeMode="contain"
-          />
-
-          <Text
-            style={{
-              color: colors.white,
-              textAlign: 'center',
-              fontFamily: Font2.semiBold,
-              fontSize: 14,
-              marginTop: 7,
-            }}>
-            Pull Up to See Videos You May Like
-          </Text>
-        </View>
       </View>
+    </View>
     // {/* </LinearGradient> */}
   );
 };
