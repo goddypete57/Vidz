@@ -15,10 +15,11 @@ import colors from './assets/colors/colors';
 import MainStack from './src/navigations/stacks/MainStack';
 import Splash from './src/screens/Splash';
 const {width, height} = Dimensions.get('window');
-
+import {useColorScheme} from 'react-native';
 
 const RootNavigator: React.FC = () => {
   const authContext = useContext(AuthContext);
+
   if (!authContext) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -27,29 +28,38 @@ const RootNavigator: React.FC = () => {
     );
   }
   const {token} = authContext;
+  const { colorScheme } = authContext; 
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => setLoading(false), 2000);
   });
 
   return (
+    <>
+         <Image
+          style={styles.background}
+          source={ colorScheme=='dark' ?require('./assets/images/background.png'):require('./assets/images/lightMode.png')}
+          resizeMode="contain"
+        />
     <NavigationContainer>
       {isLoading ? <Splash /> : <MainStack />}
     </NavigationContainer>
+    </>
   );
 };
 export default function App() {
+   const authContext = useContext(AuthContext);
+// Handle the case where AuthContext is not available
+
+
+
 
   return (
     <>
-            <Image
-          style={styles.background}
-          source={require('./assets/images/background.png')}
-          resizeMode="contain"
-        />
+       
    
         <AuthContextProvider>
-          <StatusBar barStyle="light-content" translucent={true}  />
+          <StatusBar barStyle="dark-content" translucent={true}  />
           <RootNavigator />
         </AuthContextProvider>
         {/* <Toast /> */}

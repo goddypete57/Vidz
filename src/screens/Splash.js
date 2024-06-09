@@ -1,25 +1,36 @@
-import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import colors from "../../assets/colors/colors";
+import React, {useContext} from 'react';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import colors from '../../assets/colors/colors';
+import {AuthContext} from '../../context/AuthContext';
 
 export default Splash = () => {
-    return (
-        <View style={{ width: '100%',
-        height: '100%', justifyContent:"center",alignItems:"center",backgroundColor:colors.black}}>
+  const {colorScheme} = useContext(AuthContext);
 
-            <Image
-                style={styles.image}
-                source={require("../../assets/images/logo.png")}
-            />
-        </View>
-    );  
-}
+  return (
+    <View
+      style={{
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors[colorScheme].background,
+      }}>
+      <Image
+        style={styles.image}
+        source={
+          colorScheme == 'dark'
+            ? require('../../assets/images/logo.png')
+            : require('../../assets/images/splash.png')
+        }
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-
-    image: {
-        width:100,
-        height: 100,
-        resizeMode: 'cover',
-    }
+  image: {
+    width: 100,
+    height: 100,
+    resizeMode: 'cover',
+  },
 });
