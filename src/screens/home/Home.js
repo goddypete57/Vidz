@@ -18,11 +18,13 @@ const {width, height} = Dimensions.get('window');
 export default Home = ({navigation}) => {
   const {colorScheme} = useContext(AuthContext);
   return (
-    // <LinearGradient
-    //   colors={['rgba(0, 255, 0, 0.1)', 'rgba(0, 0, 0, 0.5)','rgba(0, 0, 0, 1)']}
-    //   style={styles.container}
-    //   start={{x: 0.2, y: 0}}
-    //   end={{x: 1, y: 0}}>
+    <>
+
+<Image
+    style={styles.background}
+    source={ colorScheme=='dark' ?require('../../../assets/images/background.png'):require('../../../assets/images/lightMode.png')}
+    resizeMode="cover"
+  />
     <View
       style={{
         height: '100%',
@@ -166,7 +168,8 @@ export default Home = ({navigation}) => {
         </Text>
       </View>
     </View>
-    // {/* </LinearGradient> */}
+    </>
+
   );
 };
 

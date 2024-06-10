@@ -23,7 +23,7 @@ const AuthPassed = () => {
   return (
     <Stack.Navigator screenOptions={{
       contentStyle: {
-        backgroundColor: 'transparent'
+ 
     }
     }}>
       <Stack.Screen

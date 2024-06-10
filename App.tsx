@@ -35,29 +35,20 @@ const RootNavigator: React.FC = () => {
   });
 
   return (
-    <>
-         <Image
-          style={styles.background}
-          source={ colorScheme=='dark' ?require('./assets/images/background.png'):require('./assets/images/lightMode.png')}
-          resizeMode="cover"
-        />
+ 
+        
     <NavigationContainer>
       {isLoading ? <Splash /> : <MainStack />}
     </NavigationContainer>
-    </>
+   
   );
 };
+
 export default function App() {
    const authContext = useContext(AuthContext);
 // Handle the case where AuthContext is not available
-
-
-
-
   return (
     <>
-       
-   
         <AuthContextProvider>
           <StatusBar barStyle="dark-content" translucent={true}  />
           <RootNavigator />
@@ -71,7 +62,7 @@ const styles = StyleSheet.create({
   background: {
     width: width,
     height: height,
-    zIndex: -20,
+    // zIndex: -20,
     position: 'absolute',
   },
 });

@@ -12,12 +12,14 @@ const colors = {
     background: '#FFFFFF',
     textDark: 'rgba(0, 0, 0, 0.7)',
     profileText:'rgba(0, 0, 0, 1)',
-    searchBorder:'#FFFFFF',
+    searchBorder:'rgba(0, 71, 0, 1)',
     pullup:'rgba(255, 132, 31, 1)',
-    searchIconColor:'rgba(255, 255, 255, 1)',
+    searchIconColor:'rgba(0, 71, 0, 1)',
     searchBackGround:'rgba(0, 255, 0, 0.2)',
     ripple1:'rgba(0, 255, 0, 0.3)',
     ripple2:'rgba(0, 255, 0, 0.9)',
+  textcolor:'rgba(0, 0, 0, 0.7)',
+  clearHistoryBorder:'rgba(0, 255, 0, 0.5)',
     ...colors,
   }
   
@@ -31,6 +33,8 @@ const colors = {
     searchBackGround:'rgba(255, 255, 255, 0.08)',
     ripple1:'rgba(0, 255, 0, 0.1)',
     ripple2:'rgba(0, 255, 0, 0.7)',
+    textcolor:'rgba(255, 255, 255, 1)',
+    clearHistoryBorder:'rgba(233, 233, 233, 0.23)',
     ...colors,
   }
   
