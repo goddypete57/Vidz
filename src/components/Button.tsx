@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import colors from "../../assets/colors/colors";
-import Fonts from '../../assets/constant/Font';
+import { Fonts } from '../../assets/constant';
+import { AuthContext } from '../../context/AuthContext';
+
 
 type Props = {
     title: string,
@@ -11,10 +13,13 @@ type Props = {
     enabled?: boolean,
     textColor?: string,
     loading?: boolean,
+    theme?: 'dark' | 'light',
     buttonColor?: string
 };
 
-const Button: React.FC<Props> = ({ title, onPress = () => { }, buttonStyle, enabled, textColor, loading, buttonColor= colors.black  }) => {
+const Button: React.FC<Props> = ({ title, onPress = () => { },theme = 'dark', buttonStyle, enabled, textColor, loading, buttonColor= colors[theme].black  }) => {
+   
+
     return (
         <View pointerEvents={(enabled && !loading) ? 'auto' : 'none'}
             style={[buttonStyle, {
@@ -36,7 +41,7 @@ const Button: React.FC<Props> = ({ title, onPress = () => { }, buttonStyle, enab
                         fontSize: 15,
                         textAlign: 'center',
                         fontFamily:  Fonts.medium,
-                        color: textColor ? textColor : colors.white,
+                        color: textColor ? textColor : colors[].white,
                         flex: 1
                     }}>{title}</Text>
 

@@ -4,18 +4,20 @@ import {useContext} from 'react';
 import {AuthContext} from '../../../context/AuthContext';
 import {Font2} from '../../../assets/constant/Font';
 
-export default SearchhistoryItem = () => {
+export default SearchhistoryItem = ({onPress}) => {
   const {colorScheme} = useContext(AuthContext);
 
   return (
     <TouchableOpacity
+    onPress={()=>{onPress()}}
       style={{
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
         borderWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.3)',
+        borderColor: colors[colorScheme].border,
         height: 62,
+        borderRadius:8,
         marginTop: 10,
       }}>
       <ImageBackground

@@ -30,6 +30,7 @@ const RootNavigator: React.FC = () => {
   const {token} = authContext;
   const { colorScheme } = authContext; 
   const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => setLoading(false), 2000);
   });
@@ -50,7 +51,7 @@ export default function App() {
   return (
     <>
         <AuthContextProvider>
-          <StatusBar barStyle="dark-content" translucent={true}  />
+          {/* <StatusBar barStyle="light-content" translucent={true}  /> */}
           <RootNavigator />
         </AuthContextProvider>
         {/* <Toast /> */}
