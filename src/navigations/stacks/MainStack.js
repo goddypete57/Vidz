@@ -15,33 +15,37 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../../screens/home/Home';
 import Search from '../../screens/search/Search';
 import VideodetailScreen from '../../screens/search/VideodetailScreen';
-
+import videoPlayer from '../../screens/search/videoPlayer';
 
 const Stack = createNativeStackNavigator();
 
-
 const AuthPassed = () => {
   return (
-    <Stack.Navigator screenOptions={{
-      contentStyle: {
- 
-    }
-    }}>
+    <Stack.Navigator
+      screenOptions={{
+        contentStyle: {},
+      }}>
       <Stack.Screen
         name={mainRouts.home}
         component={Home}
         options={{headerShown: false}}
       />
-     
-     <Stack.Screen
+
+      <Stack.Screen
         name={mainRouts.Search}
         component={Search}
         options={{headerShown: false}}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name={mainRouts.VideoDtail}
         component={VideodetailScreen}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name={mainRouts.VideoPlayer}
+        component={videoPlayer}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

@@ -18,6 +18,7 @@ import CastItem from './castItem';
 import SearchResultitem from './searchResultitem';
 import VideoItem from './VideoItem';
 import Share from 'react-native-share';
+import mainRouts from '../../navigations/routs/mainRouts';
 const {width, height} = Dimensions.get('window');
 
 export default Search = ({navigation}) => {
@@ -174,6 +175,9 @@ export default Search = ({navigation}) => {
                 justifyContent: 'space-between',
               }}>
               <TouchableOpacity
+              onPress={()=>{
+                navigation.navigate(mainRouts.VideoPlayer)
+              }}
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',

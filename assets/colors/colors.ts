@@ -23,6 +23,7 @@ const colors = {
   clearHistoryBorder:'rgba(0, 255, 0, 0.5)',
   border:'rgba(0, 0, 0, 0.3)',
   divider:'rgba(255, 255, 255, 1)',
+  
     ...colors,
   }
   
