@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import colors from '../../../assets/colors/colors';
-import {useContext, useState} from 'react';
+import {useContext, useRef, useState} from 'react';
 import {AuthContext} from '../../../context/AuthContext';
 import {Font2} from '../../../assets/constant/Font';
 const {width, height} = Dimensions.get('window');
@@ -17,12 +17,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import SearchHistoryItem from './searchHistoryItem';
 import SearchResultitem from './searchResultitem';
 import mainRouts from '../../navigations/routs/mainRouts';
+import Bottomsheet from 'react-native-raw-bottom-sheet';
 
 export default Search = ({navigation}) => {
   const {colorScheme} = useContext(AuthContext);
   const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState('');
-
+  const bottomSheetRef = useRef();
   return (
     <>
       <Image
@@ -49,11 +50,11 @@ export default Search = ({navigation}) => {
           }}>
           <TouchableOpacity
             onPress={() => {
-                if (search.length >0) {
-                    setSearch('') 
-                }else{
-                    navigation.goBack();
-                }
+              if (search.length > 0) {
+                setSearch('');
+              } else {
+                navigation.goBack();
+              }
             }}
             style={{
               width: 44,
@@ -65,7 +66,11 @@ export default Search = ({navigation}) => {
             }}>
             <Image
               style={{height: 24, width: 24}}
-              source={ search.length >0 ?require('../../../assets/images/cancel.png'):require('../../../assets/images/arrow_back.png')}
+              source={
+                search.length > 0
+                  ? require('../../../assets/images/cancel.png')
+                  : require('../../../assets/images/arrow_back.png')
+              }
               tintColor={colors[colorScheme].searchIconColor}
               resizeMode="contain"
             />
@@ -107,10 +112,11 @@ export default Search = ({navigation}) => {
                 style={{
                   fontSize: 15,
                   fontFamily: Font2.regular,
-                  color: colors.textcolor,
+                  color: colors[colorScheme].textcolor,
                   width: '77%',
                   paddingStart: 10,
                 }}
+                placeholderTextColor={'rgba(165, 171, 179, 1)'}
                 placeholder="Search"
               />
             </View>
@@ -135,7 +141,8 @@ export default Search = ({navigation}) => {
           </Text>
 
           {search.length > 0 ? (
-            <View  style={{
+            <View
+              style={{
                 width: 44,
                 height: 44,
                 borderRadius: 25,
@@ -144,7 +151,6 @@ export default Search = ({navigation}) => {
                 justifyContent: 'center',
                 borderWidth: 1,
                 borderColor: colors[colorScheme].clearHistoryBorder,
-
               }}>
               <Image
                 style={{height: 24, width: 24}}
@@ -154,6 +160,149 @@ export default Search = ({navigation}) => {
               />
             </View>
           ) : (
+            <TouchableOpacity
+              onPress={() => {
+                bottomSheetRef.current.open();
+              }}>
+              <LinearGradient
+                start={{x: 0.7, y: 0.3}}
+                end={{x: 1, y: 0}}
+                //   locations={[0,0.5,0.6]}
+                colors={['rgba(255, 255, 255, 0.04)', 'rgba(115, 115, 115, 0)']}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  borderColor: colors[colorScheme].clearHistoryBorder,
+                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                  borderRadius: 7,
+                  paddingHorizontal: 6,
+                  paddingVertical: 5,
+                  borderWidth: 1,
+                }}>
+                <Image
+                  style={{height: 30, width: 30}}
+                  source={require('../../../assets/images/deleteIcon.png')}
+                  tintColor={colors[colorScheme].textDark}
+                  resizeMode="contain"
+                />
+
+                <Text
+                  style={{
+                    color: colors[colorScheme].textcolor,
+                    fontSize: 14,
+                    marginStart: 7,
+                    fontFamily: Font2.semiBold,
+                  }}>
+                  Clear History
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          )}
+        </View>
+        <View style={{width: '100%'}}>
+          {search.length < 1 ? (
+            <FlatList
+              data={[1, 2, 3]}
+              key="history"
+              keyExtractor={item => item.toString()}
+              renderItem={({item}) => (
+                <SearchHistoryItem
+                  onPress={() => {
+                    navigation.navigate(mainRouts.VideoDtail);
+                  }}
+                />
+              )}
+            />
+          ) : (
+            <FlatList
+              key="results"
+              data={[1, 2]}
+              numColumns={2}
+              keyExtractor={item => item.toString()}
+              renderItem={({item}) => (
+                <SearchResultitem
+                  onpress={() => {
+                    navigation.navigate(mainRouts.VideoDtail);
+                  }}
+                />
+              )}
+            />
+          )}
+        </View>
+      </View>
+
+      <Bottomsheet
+        height={height * 0.25}
+        width={'100%'}
+        animationType="fade"
+        ref={bottomSheetRef}
+        closeOnDragDown={true}
+        closeOnPressMask={true}
+        closeOnPressBack={true}
+        draggable={true}
+        customStyles={{
+          draggableIcon: {
+            backgroundColor: colors[colorScheme].searchIconColor,
+            // width: 50,
+            // height: 1,
+          },
+          wrapper: {},
+          container: {
+            // backgroundColor: 'rgba(158, 176, 162, 0.5)',
+            backgroundColor: colors[colorScheme].bottomSheetColor,
+            borderTopStartRadius: 20,
+            borderTopRightRadius: 20,
+            //  padding: 20,
+            // paddingBottom: 50,
+          },
+        }}>
+        <View style={{height: '100%', width: '100%'}}>
+          <Image
+            style={{
+              height: 150,
+              width: 150,
+              position: 'absolute',
+              bottom: 0,
+              left: -30,
+            }}
+            source={
+              colorScheme == 'dark'
+                ? require('../../../assets/images/fadedLogo.png')
+                : require('../../../assets/images/fadedLogo3.png')
+            }
+            resizeMode="cover"
+          />
+          <TouchableOpacity
+            onPress={() => {
+              bottomSheetRef.current.close();
+            }}
+            style={{position: 'absolute', right: 10, top: -10}}>
+            <Image
+              style={{height: 30, width: 30}}
+              source={require('../../../assets/images/cancel.png')}
+              resizeMode="cover"
+              tintColor={colors[colorScheme].searchIconColor}
+            />
+          </TouchableOpacity>
+
+          <Text
+            style={{
+              fontSize: 20,
+              fontFamily: Font2.bold,
+              color: colors[colorScheme].textcolor,
+              marginTop: 20,
+              textAlign: 'center',
+            }}>
+            Clear Search History?
+          </Text>
+
+          <TouchableOpacity
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 30,
+            }}
+            onPress={() => {}}>
             <LinearGradient
               start={{x: 0.7, y: 0.3}}
               end={{x: 1, y: 0}}
@@ -162,6 +311,8 @@ export default Search = ({navigation}) => {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
+                justifyContent: 'center',
+                width: '40%',
                 borderColor: colors[colorScheme].clearHistoryBorder,
                 backgroundColor: 'rgba(255, 255, 255, 0.04)',
                 borderRadius: 7,
@@ -186,29 +337,9 @@ export default Search = ({navigation}) => {
                 Clear History
               </Text>
             </LinearGradient>
-          )}
+          </TouchableOpacity>
         </View>
-        <View style={{width: '100%'}}>
-          {search.length < 1 ? (
-            <FlatList
-              data={[1, 2, 3]}
-              key="history"
-              keyExtractor={item => item.toString()}
-              renderItem={({item}) => <SearchHistoryItem  onPress={()=>{
-                navigation.navigate(mainRouts.VideoDtail)
-              }}/>}
-            />
-          ) : (
-            <FlatList
-              key="results"
-              data={[1, 2]}
-              numColumns={2}
-              keyExtractor={item => item.toString()}
-              renderItem={({item}) => <SearchResultitem onpress={()=>{ navigation.navigate(mainRouts.VideoDtail)}} />}
-            />
-          )}
-        </View>
-      </View>
+      </Bottomsheet>
     </>
   );
 };

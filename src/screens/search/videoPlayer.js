@@ -2,6 +2,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -9,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import colors from '../../../assets/colors/colors';
-import {useContext, useState} from 'react';
+import {useContext, useRef, useState} from 'react';
 import {AuthContext} from '../../../context/AuthContext';
 import {Font2, Fonts} from '../../../assets/constant/Font';
 import PlayIcon from '../../../assets/icons/ThumbsUp.svg';
@@ -20,6 +21,7 @@ export default VideoPlayer = ({navigation}) => {
   const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState('');
 
+
   return (
     <>
       <Image
@@ -27,7 +29,7 @@ export default VideoPlayer = ({navigation}) => {
         source={
           colorScheme == 'dark'
             ? require('../../../assets/images/background.png')
-            : require('../../../assets/images/lightMode.png')
+            : require('../../../assets/images/backgroundimg.png')
         }
         resizeMode="cover"
       />
@@ -110,14 +112,7 @@ export default VideoPlayer = ({navigation}) => {
         </View>
 
         <View style={{height: '100%', width: '100%', marginTop: 10}}>
-          <Image
-            style={styles.background}
-            source={
-              colorScheme !== 'dark' &&
-              require('../../../assets/images/background.png')
-            }
-            resizeMode="cover"
-          />
+     
 
           <Image
             style={{height: 261, width: '100%', marginTop: '40%'}}
@@ -127,7 +122,7 @@ export default VideoPlayer = ({navigation}) => {
         </View>
       </View>
 
-      <View style={{paddingHorizontal: 4, bottom: 100}}>
+      <View style={{paddingHorizontal: 4, bottom:Platform.OS == 'ios'? 80:30}}>
         <View
           style={{
             flexDirection: 'row',
@@ -155,16 +150,68 @@ export default VideoPlayer = ({navigation}) => {
           </Text>
         </View>
 
-        <CustomProgressBar progress={100} />
-        <View style={{marginTop:10}}>
+        <CustomProgressBar progress={50} />
+        <View style={{marginTop:10,alignItems:'center',flexDirection:'row',justifyContent:'space-between'}}>
+        <View style={{flexDirection:'row',alignItems:'center'}}>
+
           <TouchableOpacity onPress={()=>{}}>
             <Image
-              style={{width: 30, height: 30}}
+              style={{width: 30, height: 30,}}
               source={require('../../../assets/images/Play.png')}
             />
           </TouchableOpacity>
+
+          <TouchableOpacity style={{marginStart:27}} onPress={()=>{}}>
+            <Image
+              style={{width: 30, height: 30,}}
+              source={require('../../../assets/images/cast.png')}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{marginStart:25}} onPress={()=>{}}>
+            <Image
+              style={{width: 40, height: 40}}
+              source={require('../../../assets/images/landscape.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={{marginStart:25}} onPress={()=>{}}>
+            <Image
+              style={{width: 30, height: 30}}
+              source={require('../../../assets/images/share.png')}
+              tintColor={'#fff'}
+            />
+          </TouchableOpacity>
+        </View>
+
+
+{/* like */}
+
+          <View style={{flexDirection:'row',alignItems:'center'}}>
+          <TouchableOpacity style={{marginStart:27}} onPress={()=>{}}>
+            <Image
+              style={{width: 30, height: 30,}}
+              source={require('../../../assets/images/ThumbsUp.png')}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{marginStart:27}} onPress={()=>{}}>
+            <Image
+              style={{width: 20, height: 30}}
+              source={require('../../../assets/images/thumbDown.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={{marginStart:27}} onPress={()=>{}}>
+            <Image
+              style={{width: 30, height: 30}}
+              source={require('../../../assets/images/downloadIcon.png')}
+             
+            />
+          </TouchableOpacity>
+          </View>
         </View>
       </View>
+
+
     </>
   );
 };

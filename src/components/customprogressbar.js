@@ -26,7 +26,7 @@ const CustomProgressBar = ({
       useNativeDriver: true, // Optimize for better performance (optional)
     }).start();
   }, [progress]); // Re-run useEffect when progress changes
-  console.log(progress, animatedProgress);
+  // console.log(progress, animatedProgress);
 
   const widthInterpolated = animatedProgress.interpolate({
     inputRange: [0, 100],
