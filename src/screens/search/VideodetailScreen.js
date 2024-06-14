@@ -39,21 +39,26 @@ export default Search = ({navigation}) => {
 
       <ScrollView style={{flexGrow: 1}}>
         <View style={{flex: 1, marginTop: Platform.OS == 'ios' ? 80 : 50}}>
-          <ImageBackground
+          <View style={{justifyContent:'center',alignItems:'center'}}>
+
+          <Image
             style={{
               height: 161,
               width: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
+          
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
             }}
             resizeMode="cover"
-            source={require('../../../assets/images/image.png')}>
-            <Image
-              style={{height: 30, width: 30}}
-              tintColor={colors[colorScheme].pullup}
-              source={require('../../../assets/images/Play.png')}
-            />
-          </ImageBackground>
+            source={require('../../../assets/images/image.png')}
+          />
+
+          <Image
+            style={{height: 30, width: 30, position: 'absolute', }}
+            tintColor={colors[colorScheme].pullup}
+            source={require('../../../assets/images/Play.png')}
+          />
+          </View>
 
           <View style={{paddingHorizontal: 8, width: '100%'}}>
             <View
@@ -175,9 +180,9 @@ export default Search = ({navigation}) => {
                 justifyContent: 'space-between',
               }}>
               <TouchableOpacity
-              onPress={()=>{
-                navigation.navigate(mainRouts.VideoPlayer)
-              }}
+                onPress={() => {
+                  navigation.navigate(mainRouts.VideoPlayer);
+                }}
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -198,13 +203,15 @@ export default Search = ({navigation}) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-              onPress={()=>{Share.open(options)
-                .then((res) => {
-                  console.log(res);
-                })
-                .catch((err) => {
-                  err && console.log(err);
-                });}}
+                onPress={() => {
+                  Share.open(options)
+                    .then(res => {
+                      console.log(res);
+                    })
+                    .catch(err => {
+                      err && console.log(err);
+                    });
+                }}
                 style={{
                   borderWidth: 1,
                   borderColor: 'rgba(255, 132, 31, 1)',
@@ -239,23 +246,26 @@ export default Search = ({navigation}) => {
               renderItem={() => <CastItem />}
             />
 
-
-            <View style={{flexDirection:'row',alignItems:'center', marginTop: 36,}}>
-            <Text
+            <View
               style={{
-                color: colors[colorScheme].textcolor,
-                fontSize: 19,
-                fontFamily: Font2.semiBold,
-                marginEnd:10
-               
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 36,
               }}>
-              Related Videos
-            </Text>
+              <Text
+                style={{
+                  color: colors[colorScheme].textcolor,
+                  fontSize: 19,
+                  fontFamily: Font2.semiBold,
+                  marginEnd: 10,
+                }}>
+                Related Videos
+              </Text>
 
-            <Image
-                  style={{height: 24, width: 24}}
-                  source={require('../../../assets/images/arrowDown.png')}
-                />
+              <Image
+                style={{height: 24, width: 24}}
+                source={require('../../../assets/images/arrowDown.png')}
+              />
             </View>
 
             <FlatList
@@ -263,7 +273,7 @@ export default Search = ({navigation}) => {
               horizontal
               showsHorizontalScrollIndicator={false}
               style={{}}
-              renderItem={() => <VideoItem   onpress={()=>{}}/>}
+              renderItem={() => <VideoItem onpress={() => {}} />}
             />
           </View>
         </View>

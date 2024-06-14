@@ -3,6 +3,7 @@ const mainRouts = {
   Search:'search',
   VideoDtail:'VideoDtail',
   VideoPlayer:'videoPlayer',
+findVideo:'findVideo',
 
 };
 

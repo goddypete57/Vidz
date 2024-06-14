@@ -9,7 +9,7 @@ const colors = {
 
 
   const light = {
-    background: '#FFFFFF',
+    background: 'rgba(235, 238, 242, 1)',
     textDark: 'rgba(0, 0, 0, 0.7)',
     profileText:'rgba(0, 0, 0, 1)',
     searchBorder:'rgba(0, 71, 0, 1)',
@@ -24,12 +24,12 @@ const colors = {
   border:'rgba(0, 0, 0, 0.3)',
   divider:'rgba(255, 255, 255, 1)',
   bottomSheetColor:'rgba(244, 246, 249, 1)',
-  
+  iconColor:'rgba(0, 0, 0, 1)',
     ...colors,
   }
   
   const dark = {
-    background: '#000000',
+    background: 'rgba(0, 0, 0, 1)',
     textDark: '#rgba(0, 255, 0, 1)',
     profileText:'rgba(255, 255, 255, 1)',
     searchBorder:'rgba(233, 233, 233, 0.23)',
@@ -44,6 +44,7 @@ const colors = {
     border:'rgba(44, 58, 75, 1)',
     divider:'rgba(57, 68, 82, 1)',
     bottomSheetColor:'rgba(0, 0, 0, 1)',
+    iconColor:'rgba(255, 255, 255, 1)',
     ...colors,
   }
   

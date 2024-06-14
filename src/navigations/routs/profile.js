@@ -1,0 +1,3 @@
+const ProfileRoute = {
+    Profile: 'Profile',  
+  };

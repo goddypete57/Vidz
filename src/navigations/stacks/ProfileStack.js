@@ -17,46 +17,25 @@ import Search from '../../screens/search/Search';
 import VideodetailScreen from '../../screens/search/VideodetailScreen';
 import videoPlayer from '../../screens/search/videoPlayer';
 import FindVideo from '../../screens/findVideo/FindVideo';
+import Profile from '../../screens/profile/Profile';
 
 const Stack = createNativeStackNavigator();
 
-const AuthPassed = () => {
+const profilePass = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         contentStyle: {
-          backgroundColor: 'transparent'
+          backgroundColor: 'transparent',
         },
       }}>
       <Stack.Screen
-        name={mainRouts.home}
-        component={Home}
+        name={ProfileRoute.Profile}
+        component={Profile}
         options={{headerShown: false}}
       />
 
-      <Stack.Screen
-        name={mainRouts.Search}
-        component={Search}
-        options={{headerShown: false}}
-      />
-
-      <Stack.Screen
-        name={mainRouts.VideoDtail}
-        component={VideodetailScreen}
-        options={{headerShown: false}}
-      />
-
-      <Stack.Screen
-        name={mainRouts.VideoPlayer}
-        component={videoPlayer}
-        options={{headerShown: false}}
-      />
-
-<Stack.Screen
-        name={mainRouts.findVideo}
-        component={FindVideo}
-        options={{headerShown: false}}
-      />
+    
     </Stack.Navigator>
   );
 };

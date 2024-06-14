@@ -22,7 +22,7 @@ export default Home = ({navigation}) => {
 
 <Image
     style={styles.background}
-    source={ colorScheme=='dark' ?require('../../../assets/images/background.png'):require('../../../assets/images/lightMode.png')}
+    source={ colorScheme=='dark' ? require('../../../assets/images/background.png'):require('../../../assets/images/lightMode.png')}
     resizeMode="cover"
   />
     <View
@@ -51,10 +51,10 @@ export default Home = ({navigation}) => {
           <Image
             style={{height: 30, width: 30, marginTop: 10}}
             source={
-              colorScheme == 'dark'
-                ? require('../../../assets/images/person.png')
-                : require('../../../assets/images/person2.png')
+              require('../../../assets/images/person.png')
+              
             }
+            tintColor={colors[colorScheme].searchIconColor}
             resizeMode="contain"
           />
           <Text
@@ -81,7 +81,10 @@ export default Home = ({navigation}) => {
         Tap to Record a Video
       </Text>
 
-      <View
+      <TouchableOpacity
+      onPress={()=>{
+        navigation.navigate(mainRouts.findVideo)
+      }}
         style={{
           borderWidth: 4,
           borderColor: colors[colorScheme].ripple1,
@@ -123,7 +126,7 @@ export default Home = ({navigation}) => {
           />
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
 
       <TouchableOpacity
       onPress={()=>{
