@@ -25,6 +25,9 @@ const colors = {
   divider:'rgba(255, 255, 255, 1)',
   bottomSheetColor:'rgba(244, 246, 249, 1)',
   iconColor:'rgba(0, 0, 0, 1)',
+  profileColor:'rgba(0, 71, 0, 1)',
+  otpBorder:'#232323',
+  text2:'rgba(133, 140, 148, 1)',
     ...colors,
   }
   
@@ -45,6 +48,9 @@ const colors = {
     divider:'rgba(57, 68, 82, 1)',
     bottomSheetColor:'rgba(0, 0, 0, 1)',
     iconColor:'rgba(255, 255, 255, 1)',
+    profileColor:'rgba(255, 255, 255, 1)',
+    otpBorder:'rgba(233, 233, 233, 0.23)',
+    text2:'rgba(0, 255, 0, 1)',
     ...colors,
   }
   

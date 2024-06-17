@@ -16,6 +16,7 @@ import MainStack from './src/navigations/stacks/MainStack';
 import Splash from './src/screens/Splash';
 const {width, height} = Dimensions.get('window');
 import {useColorScheme} from 'react-native';
+import Profile from './src/screens/profile/Profile';
 
 const RootNavigator: React.FC = () => {
   const authContext = useContext(AuthContext);
@@ -39,7 +40,7 @@ const RootNavigator: React.FC = () => {
  
         
     <NavigationContainer>
-      {isLoading ? <Splash /> : <MainStack />}
+      {isLoading ? <Splash /> : <Profile />}
     </NavigationContainer>
    
   );
