@@ -20,7 +20,6 @@ import ProfilePass from './src/navigations/stacks/ProfileStack';
 import Profile from './src/screens/profile/Profile';
 import ProfileStack from './src/navigations/stacks/ProfileStack';
 
-
 const RootNavigator: React.FC = () => {
   const authContext = useContext(AuthContext);
 
@@ -32,7 +31,7 @@ const RootNavigator: React.FC = () => {
     );
   }
   const {token} = authContext;
-  const { colorScheme } = authContext; 
+  const {colorScheme} = authContext;
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,26 +39,22 @@ const RootNavigator: React.FC = () => {
   });
 
   return (
- 
-        
     <NavigationContainer>
-      {isLoading ? <Splash /> :<ProfileStack/> }
+      {isLoading ? <Splash /> : <ProfileStack />}
     </NavigationContainer>
-   
   );
 };
 
 export default function App() {
-   const authContext = useContext(AuthContext);
-// Handle the case where AuthContext is not available
+  const authContext = useContext(AuthContext);
+  // Handle the case where AuthContext is not available
   return (
     <>
-        <AuthContextProvider>
-          {/* <StatusBar barStyle="light-content" translucent={true}  /> */}
-          <RootNavigator />
-        </AuthContextProvider>
-        {/* <Toast /> */}
-   
+      <AuthContextProvider>
+        {/* <StatusBar barStyle="light-content" translucent={true}  /> */}
+        <RootNavigator />
+      </AuthContextProvider>
+      {/* <Toast /> */}
     </>
   );
 }

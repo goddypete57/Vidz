@@ -14,6 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {AuthContext} from '../../../context/AuthContext';
 import {useContext} from 'react';
 import mainRouts from '../../navigations/routs/mainRouts';
+import profileRouts from '../../navigations/routs/profileRouts';
 const {width, height} = Dimensions.get('window');
 export default Home = ({navigation}) => {
   const {colorScheme} = useContext(AuthContext);
@@ -39,7 +40,9 @@ export default Home = ({navigation}) => {
           paddingTop:20,
           width: '100%',
         }}>
-        {/* <View style={{alignItems: 'center', position: 'absolute'}}> */}
+        <TouchableOpacity onPress={()=>{
+          navigation.navigate(profileRouts.userAccount)
+        }} style={{ }}>
         <ImageBackground
           style={{height: 80, width: 120, alignItems: 'center'}}
           source={
@@ -68,8 +71,10 @@ export default Home = ({navigation}) => {
           </Text>
         </ImageBackground>
 
-        {/* </View> */}
+        </TouchableOpacity>
       </View>
+
+      
       <Text
         style={{
           color: colors[colorScheme].textDark,

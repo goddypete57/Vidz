@@ -73,7 +73,9 @@ export default Profile = ({navigation}) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate(profileRouts.Settings);
+          }}
           style={{
             width: 44,
             height: 44,
@@ -199,9 +201,9 @@ export default Profile = ({navigation}) => {
                     style={{
                       fontSize: 13,
                       fontFamily: Fonts.semiBold,
-                      color:colors[colorScheme].text2,
-                      textAlign:'center',
-                      marginTop:47
+                      color: colors[colorScheme].text2,
+                      textAlign: 'center',
+                      marginTop: 47,
                     }}>
                     Check your email address for a verification code
                   </Text>
@@ -217,20 +219,24 @@ export default Profile = ({navigation}) => {
                       // }
                     }}
                   />
-                    <Text
+                  <Text
                     style={{
                       fontSize: 13,
                       fontFamily: Fonts.semiBold,
-                      color:'rgba(133, 140, 148, 1)',
-                      textAlign:'right',
-                      
-                    }}>Didn’t get code?<Text style={{
-                      fontSize: 13,
-                      fontFamily: Fonts.semiBold,
-                      color:'rgba(0, 255, 0, 1)',
-                      textAlign:'right',
-                      
-                    }}  onPress={()=>{}}>Resend Code</Text> 
+                      color: 'rgba(133, 140, 148, 1)',
+                      textAlign: 'right',
+                    }}>
+                    Didn’t get code?
+                    <Text
+                      style={{
+                        fontSize: 13,
+                        fontFamily: Fonts.semiBold,
+                        color: 'rgba(0, 255, 0, 1)',
+                        textAlign: 'right',
+                      }}
+                      onPress={() => {}}>
+                      Resend Code
+                    </Text>
                   </Text>
                 </View>
               )}
@@ -245,7 +251,7 @@ export default Profile = ({navigation}) => {
                   if (step == 1) {
                     setStep(2);
                   } else {
-                    navigation.navigate(profileRouts.createPin)
+                    navigation.navigate(profileRouts.createPin);
                   }
                 }}
                 enabled={true}
@@ -277,6 +283,6 @@ const styles = StyleSheet.create({
     color: colors.Darkbrown,
     fontFamily: 'PlayfairDisplay-Regular',
     textAlign: 'center',
-    marginTop:25
+    marginTop: 25,
   },
 });

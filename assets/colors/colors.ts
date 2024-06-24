@@ -2,6 +2,7 @@ const colors = {
     primary: '#00FF00',
     white:'#FFFFFF',
     black:'#000000',
+    nutural:'rgba(165, 171, 179, 1)'
 
 
 

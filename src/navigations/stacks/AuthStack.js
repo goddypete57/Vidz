@@ -24,51 +24,7 @@ export default AuthStack = () => {
         component={Welcome}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name={authRouts.login}
-        component={LoginScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={authRouts.signUp}
-        component={OneLastStep}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={authRouts.forgotPassword}
-        component={ForgotPassword}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={authRouts.firstStep}
-        component={FirstStep}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={authRouts.OneLastStep}
-        component={OneLastStep}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={authRouts.VerifyOtp}
-        component={VerifyAccount}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={authRouts.ressetPassword}
-        component={ResetPassword}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={authRouts.loginOtp}
-        component={LoginOtp}
-        options={{headerShown: false}}
-      />
-        <Stack.Screen
-        name={authRouts.finish}
-        component={FinishedStep}
-        options={{headerShown: false}}
-      />
+
       {/* <Stack.Screen name={authRouts.verifyAccount} component={VerifyAccount} options={{ headerShown: false }} /> */}
     </Stack.Navigator>
   );

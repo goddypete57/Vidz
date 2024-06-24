@@ -18,6 +18,7 @@ import {BlurView} from '@react-native-community/blur';
 import {Fonts} from '../../../assets/constant';
 import Button from '../../components/Button';
 import OtpFields from '../../components/OtpFields';
+import profileRouts from '../../navigations/routs/profileRouts';
 
 const {width, height} = Dimensions.get('window');
 
@@ -48,7 +49,7 @@ export default CreatePin = ({navigation}) => {
           justifyContent: 'flex-end',
         }}>
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={() => { navigation.navigate(profileRouts.Settings);}}
           style={{
             width: 44,
             height: 44,
@@ -145,6 +146,7 @@ export default CreatePin = ({navigation}) => {
                   if (step == 1) {
                     setStep(2);
                   } else {
+                    navigation.navigate(profileRouts.userAccount)
                   }
                 }}
                 enabled={true}
