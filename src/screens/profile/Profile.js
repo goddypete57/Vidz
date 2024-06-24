@@ -18,6 +18,7 @@ import {BlurView} from '@react-native-community/blur';
 import {Fonts} from '../../../assets/constant';
 import Button from '../../components/Button';
 import OtpFields from '../../components/OtpFields';
+import profileRouts from '../../navigations/routs/profileRouts';
 
 const {width, height} = Dimensions.get('window');
 
@@ -244,6 +245,7 @@ export default Profile = ({navigation}) => {
                   if (step == 1) {
                     setStep(2);
                   } else {
+                    navigation.navigate(profileRouts.createPin)
                   }
                 }}
                 enabled={true}

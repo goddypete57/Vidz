@@ -10,18 +10,16 @@ import {
   Keyboard,
   Platform,
 } from 'react-native';
-import mainRouts from '../routs/mainRouts';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from '../../screens/home/Home';
-import Search from '../../screens/search/Search';
-import VideodetailScreen from '../../screens/search/VideodetailScreen';
-import videoPlayer from '../../screens/search/videoPlayer';
-import FindVideo from '../../screens/findVideo/FindVideo';
-import Profile from '../../screens/profile/Profile';
 
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import CreatePin from '../../screens/profile/CreatePin';
+import profileRouts from '../routs/profileRouts';
+import Profile from '../../screens/profile/Profile';
+import userAccount from '../../screens/profile/userAccount';
 const Stack = createNativeStackNavigator();
 
-const profilePass = () => {
+export default ProfileStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -30,17 +28,27 @@ const profilePass = () => {
         },
       }}>
       <Stack.Screen
-        name={ProfileRoute.Profile}
+        name={profileRouts.Profile}
         component={Profile}
         options={{headerShown: false}}
       />
 
-    
+      <Stack.Screen
+        name={profileRouts.createPin}
+        component={CreatePin}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name={profileRouts.userAccount}
+        component={userAccount}
+        options={{headerShown: false}}
+      />
+
+
     </Stack.Navigator>
   );
 };
-
-export default AuthPassed;
 
 const styles = StyleSheet.create({
   container: {
