@@ -10,7 +10,11 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 // import Toast from 'react-native-toast-message'
-import {AuthContext, AuthContextProvider} from './context/AuthContext';
+import {
+  AuthContext,
+  AuthContextProvider,
+  STACK_TYPE,
+} from './context/AuthContext';
 import colors from './assets/colors/colors';
 import MainStack from './src/navigations/stacks/MainStack';
 import Splash from './src/screens/Splash';
@@ -30,7 +34,7 @@ const RootNavigator: React.FC = () => {
       </View>
     );
   }
-  const {token} = authContext;
+  const {token, stackType} = authContext;
   const {colorScheme} = authContext;
   const [isLoading, setLoading] = useState(true);
 
@@ -40,7 +44,13 @@ const RootNavigator: React.FC = () => {
 
   return (
     <NavigationContainer>
-      {isLoading ? <Splash /> : <ProfileStack />}
+      {isLoading ? (
+        <Splash />
+      ) : stackType == STACK_TYPE.PROFILE ? (
+        <ProfileStack />
+      ) : (
+        <MainStack />
+      )}
     </NavigationContainer>
   );
 };

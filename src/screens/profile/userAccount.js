@@ -21,7 +21,7 @@ import profileRouts from '../../navigations/routs/profileRouts';
 const {width, height} = Dimensions.get('window');
 
 export default Search = ({navigation}) => {
-  const {colorScheme} = useContext(AuthContext);
+  const {colorScheme,toggleStack} = useContext(AuthContext);
   const [search, setSearch] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   return (
@@ -210,7 +210,8 @@ export default Search = ({navigation}) => {
         </View>
       </View>
       <TouchableOpacity
-        onPress={() => {   
+        onPress={() => {  
+          toggleStack('MAIN') 
         }}
         style={{
           position: 'absolute',

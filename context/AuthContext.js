@@ -1,6 +1,7 @@
 import React, {createContext, useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useColorScheme} from 'react-native';
+import { StackActions } from '@react-navigation/native';
 
 export const AuthContext = createContext(null);
 
@@ -8,10 +9,9 @@ export const AuthContextProvider = ({children}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
-
+  const [stackType, setstackType] = useState(STACK_TYPE.MAIN);
 
   const [colorScheme, setColorScheme] = useState('dark');
-  const [isOnboarded, setIsOnboarded] = useState(false);
   const appearance = useColorScheme();
 
 
@@ -30,18 +30,11 @@ export const AuthContextProvider = ({children}) => {
     // console.log("user",user)
   };
 
-  
-  const onboard = () => {
-    setIsOnboarded(true);
-    AsyncStorage.setItem('onboarded', 'true');
-  };
 
-  const logout = () => {
-    setIsLoading(true);
-    setToken(null);
-    AsyncStorage.removeItem('token');
-    setIsLoading(false);
-  };
+  const toggleStack = async (stackType) => {
+    setstackType(stackType);
+    AsyncStorage.setItem('stackType', stackType);
+  }
 
   const getTheme = async () => {
     let theme = await AsyncStorage.getItem('theme');
@@ -66,12 +59,11 @@ export const AuthContextProvider = ({children}) => {
       setIsLoading(true);
       let token = await AsyncStorage.getItem('token');
       let user = await AsyncStorage.getItem('user');
-     
-      setIsOnboarded(onboarded === 'true' ? true : false);
+      let stack_type = await AsyncStorage.getItem('stackType')
       setToken(token);
       setUser(JSON.parse(user ?? '{}'));
-      setLoaction(location);
       setIsLoading(false);
+      setstackType(stack_type ?? STACK_TYPE.MAIN)
     } catch (error) {
       console.log('isLoggedIn error: $(error)');
     }
@@ -87,21 +79,21 @@ export const AuthContextProvider = ({children}) => {
   return (
     <AuthContext.Provider
       value={{
-        // login,
-        logout,
         isLoading,
         token,
         user,
         saveUser,
-        // saveToken,
         colorScheme,
-        isOnboarded,
-        onboard,
         toggleTheme,
-        // saveLatAndLong,
-        // loaction
+        toggleStack,
+        stackType
       }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+export const STACK_TYPE = {
+  MAIN: 'MAIN',
+  PROFILE: 'PROFILE',
+}

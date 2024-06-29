@@ -23,7 +23,7 @@ import profileRouts from '../../navigations/routs/profileRouts';
 const {width, height} = Dimensions.get('window');
 
 export default Profile = ({navigation}) => {
-  const {colorScheme} = useContext(AuthContext);
+  const {colorScheme,toggleStack} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [step, setStep] = useState(1);
@@ -53,7 +53,7 @@ export default Profile = ({navigation}) => {
             if (step == 2) {
               setStep(1);
             } else {
-              navigation.goBack();
+              toggleStack('MAIN')
             }
           }}
           style={{
