@@ -10,6 +10,9 @@ const colors = {
 
 
   const light = {
+  premiumText:'rgba(255, 132, 31, 1)',
+  subtext:'rgba(0, 0, 0, 1)',
+
     background: 'rgba(235, 238, 242, 1)',
     textDark: 'rgba(0, 0, 0, 0.7)',
     profileText:'rgba(0, 0, 0, 1)',
@@ -33,6 +36,8 @@ const colors = {
   }
   
   const dark = {
+    premiumText:'rgba(255, 255, 255, 1)',
+subtext:'rgba(165, 171, 179, 1)',
     background: 'rgba(0, 0, 0, 1)',
     textDark: '#rgba(0, 255, 0, 1)',
     profileText:'rgba(255, 255, 255, 1)',

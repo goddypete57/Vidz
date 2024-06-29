@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import colors from '../../../assets/colors/colors';
-import {useContext, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import {AuthContext} from '../../../context/AuthContext';
 const {width, height} = Dimensions.get('window');
 import mainRouts from '../../navigations/routs/mainRouts';
@@ -19,10 +19,10 @@ import {Fonts} from '../../../assets/constant';
 import CustomSwitch from '../../components/switch';
 
 export default Settings = ({navigation}) => {
-  const {colorScheme} = useContext(AuthContext);
-  const [search, setSearch] = useState('');
+    const {  colorScheme, toggleTheme,  } = useContext(AuthContext);
+    const [search, setSearch] = useState('');
   const [switchState, setSwitchState] = useState(false);
-  const [switchState2, setSwitchState2] = useState(false);
+  const [switchState2, setSwitchState2] = useState(colorScheme === 'dark');
   const [switchState3, setSwitchState3] = useState(false);
   const [switchState4, setSwitchState4] = useState(false);
   const [switchState5, setSwitchState5] = useState(false);
@@ -30,6 +30,9 @@ export default Settings = ({navigation}) => {
   const [switchState7, setSwitchState7] = useState(false);
   const [switchState8, setSwitchState8] = useState(false);
 
+//   useEffect(() => {
+//     setSwitchState2(colorScheme === 'dark');
+//   }, [colorScheme]);
   return (
     <>
       <Image
@@ -210,7 +213,10 @@ export default Settings = ({navigation}) => {
 
               <CustomSwitch
                 initialValue={switchState2}
-                onToggle={value => setSwitchState2(value)}
+                onToggle={value => {
+                    setSwitchState2(value)
+                    toggleTheme()
+                }}
               />
             </View>
 

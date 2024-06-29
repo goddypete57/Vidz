@@ -5,6 +5,8 @@ const profileRouts = {
     createPin:'createPin',
     userAccount:'userAccount',
     listOfVideo:'listOfVideo',
-    Settings:'setting'
+    Settings:'setting',
+    Premium:'Premium'
+    
   };
   export default profileRouts;

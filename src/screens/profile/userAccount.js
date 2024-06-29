@@ -40,7 +40,7 @@ export default Search = ({navigation}) => {
         style={{
           flex: 1,
           marginTop: Platform.OS == 'ios' ? 70 : 0,
-          paddingHorizontal: 6,
+          
         }}>
         <ImageBackground
           style={{height: 175, width: '100%'}}
@@ -155,15 +155,15 @@ export default Search = ({navigation}) => {
                 </Text>
               </View>
 
-              <Button
+              {/* <Button
                 buttonColor="rgba(255, 133, 32, 1)"
                 buttonStyle={{height: 46, width: '42%',borderRadius:8}}
                 title="Get Premium"
                 onPress={() => {
-                 
+                 navigation.navigate(profileRouts.Premium)
                 }}
                 enabled={true}
-              />
+              /> */}
             </View>
           </View>
         </ImageBackground>
