@@ -1,5 +1,7 @@
 import {
+  Animated,
   Dimensions,
+  Easing,
   Image,
   ImageBackground,
   Platform,
@@ -12,12 +14,62 @@ import colors from '../../../assets/colors/colors';
 import {Fonts, Font2} from '../../../assets/constant/Font';
 import LinearGradient from 'react-native-linear-gradient';
 import {AuthContext} from '../../../context/AuthContext';
-import {useContext} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import mainRouts from '../../navigations/routs/mainRouts';
 import profileRouts from '../../navigations/routs/profileRouts';
 const {width, height} = Dimensions.get('window');
 export default Home = ({navigation}) => {
-  const {colorScheme,toggleStack} = useContext(AuthContext);
+  const {colorScheme, toggleStack} = useContext(AuthContext);
+
+  const position = useRef(new Animated.Value(0)).current;
+  const opacity = useRef(new Animated.Value(1)).current;
+  const [text, setText] = useState('Tap to Record a Video');
+
+  useEffect(() => {
+    const changeText = () => {
+      setText(prevText =>
+        prevText === 'Tap to Record a Video'
+          ? 'Hold to pin Vidzam to your screen'
+          : 'Tap to Record a Video',
+      );
+    };
+
+    const animation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(opacity, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(position, {
+          toValue: 100, // Move downward
+          duration: 1000,
+          easing: Easing.bounce,
+          useNativeDriver: true,
+        }),
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(position, {
+          toValue: 0, // Move back to original position
+          duration: 0, // Instant reset
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+
+    animation.start();
+
+    const interval = setInterval(changeText, 2000); // Change text every 2 seconds
+
+    return () => {
+      animation.stop();
+      clearInterval(interval);
+    };
+  }, [opacity, position]);
+
   return (
     <>
       <Image
@@ -45,7 +97,7 @@ export default Home = ({navigation}) => {
           }}>
           <TouchableOpacity
             onPress={() => {
-              toggleStack('PROFILE')
+              toggleStack('PROFILE');
             }}
             style={{}}>
             <ImageBackground
@@ -75,16 +127,18 @@ export default Home = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <Text
+        <Animated.Text
           style={{
             color: colors[colorScheme].textDark,
             textAlign: 'center',
             fontFamily: Font2.regular,
             fontSize: 18,
-            marginTop: 82,
+            marginTop: 80,
+            // transform: [{ translateY: position }],
+            opacity: opacity,
           }}>
-          Tap to Record a Video
-        </Text>
+          {text}
+        </Animated.Text>
 
         <TouchableOpacity
           onPress={() => {

@@ -12,9 +12,13 @@ import userAccount from '../../screens/profile/userAccount';
 import ListOfVideo from '../../screens/profile/ListOfVideo';
 import setting from '../../screens/profile/setting';
 import Premium from '../../screens/profile/Premium';
+import {AuthContext} from '../../../context/AuthContext';
+import pin from '../../screens/profile/pin';
 const Stack = createNativeStackNavigator();
 
 export default ProfileStack = () => {
+  const {token} = useContext(AuthContext);
+console.log(token)
   return (
     <Stack.Navigator
       screenOptions={{
@@ -22,11 +26,19 @@ export default ProfileStack = () => {
           backgroundColor: 'transparent',
         },
       }}>
-      <Stack.Screen
-        name={profileRouts.Profile}
-        component={Profile}
-        options={{headerShown: false}}
-      />
+      {token === 'guest' ? (
+        <Stack.Screen
+          name={profileRouts.Profile}
+          component={Profile}
+          options={{headerShown: false}}
+        />
+      ) : (
+        <Stack.Screen
+          name={profileRouts.pin}
+          component={pin}
+          options={{headerShown: false}}
+        />
+      )}
 
       <Stack.Screen
         name={profileRouts.createPin}

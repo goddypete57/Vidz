@@ -22,8 +22,8 @@ import profileRouts from '../../navigations/routs/profileRouts';
 
 const {width, height} = Dimensions.get('window');
 
-export default CreatePin = ({navigation}) => {
-  const {colorScheme,saveToken} = useContext(AuthContext);
+export default Profile = ({navigation}) => {
+  const {colorScheme,toggleStack} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [step, setStep] = useState(1);
@@ -46,10 +46,36 @@ export default CreatePin = ({navigation}) => {
           alignItems: 'center',
           flexDirection: 'row',
           marginTop: Platform.OS == 'ios' ? 60 : 30,
-          justifyContent: 'flex-end',
+          justifyContent: 'space-between',
         }}>
         <TouchableOpacity
-          onPress={() => { navigation.navigate(profileRouts.Settings);}}
+          onPress={() => {
+            if (step == 2) {
+              setStep(1);
+            } else {
+              toggleStack('MAIN')
+            }
+          }}
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: 25,
+            backgroundColor: colors[colorScheme].searchBackGround,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Image
+            style={{height: 24, width: 24}}
+            source={require('../../../assets/images/arrow_back.png')}
+            tintColor={colors[colorScheme].searchIconColor}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate(profileRouts.Settings);
+          }}
           style={{
             width: 44,
             height: 44,
@@ -87,7 +113,7 @@ export default CreatePin = ({navigation}) => {
             <View style={{alignItems: 'center'}}>
               <Image
                 style={{height: 159, marginTop: 37}}
-                source={require('../../../assets/images/welcomImage.png')}
+                source={require('../../../assets/images/signUpImage.png')}
                 resizeMode="contain"
               />
 
@@ -98,7 +124,7 @@ export default CreatePin = ({navigation}) => {
                   color: colors[colorScheme].profileColor,
                   marginTop: 18,
                 }}>
-                Welcome Aboard
+                Welcome Back
               </Text>
 
               <Text
@@ -108,33 +134,28 @@ export default CreatePin = ({navigation}) => {
                   color: 'rgba(133, 140, 148, 1)',
                   marginTop: 10,
                 }}>
-                We are excited to have you onboard.
+               Input your 4-digit PIN to access your videos
               </Text>
+            
+            
+          
+                <View>
+               
+                  <OtpFields
+                    style={styles.otpText}
+                    nuberOfFields={4}
+                    value={otp}
+                    theme={colorScheme}
+                    onChangeText={text => {
+                      setOtp(text);
+                      // if (text.length === 4) {
 
-              <View>
-                <Text
-                  style={{
-                    fontSize: 13,
-                    fontFamily: Fonts.semiBold,
-                    color: colors[colorScheme].text2,
-                    textAlign: 'center',
-                    marginTop: 47,
-                  }}>
-                  Input a PIN for security
-                </Text>
-                <OtpFields
-                  style={styles.otpText}
-                  nuberOfFields={4}
-                  value={otp}
-                  theme={colorScheme}
-                  onChangeText={text => {
-                    setOtp(text);
-                    // if (text.length === 4) {
-
-                    // }
-                  }}
-                />
-              </View>
+                      // }
+                    }}
+                  />
+            
+                </View>
+       
             </View>
 
             <View style={{alignItems: 'center', marginTop: '50%'}}>
@@ -143,12 +164,9 @@ export default CreatePin = ({navigation}) => {
                 buttonStyle={{height: 46, width: '80%'}}
                 title="Continue"
                 onPress={() => {
-                  if (step == 1) {
-                    setStep(2);
-                  } else {
-                    saveToken('user')
-                    navigation.navigate(profileRouts.userAccount)
-                  }
+                 
+                    navigation.navigate(profileRouts.userAccount);
+                  
                 }}
                 enabled={true}
               />

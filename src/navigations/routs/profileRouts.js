@@ -6,7 +6,8 @@ const profileRouts = {
     userAccount:'userAccount',
     listOfVideo:'listOfVideo',
     Settings:'setting',
-    Premium:'Premium'
+    Premium:'Premium',
+    pin:'pin'
     
   };
   export default profileRouts;

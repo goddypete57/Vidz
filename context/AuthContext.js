@@ -16,12 +16,14 @@ export const AuthContextProvider = ({children}) => {
 
 
 
-  // const saveToken = token => {
-  //   setIsLoading(true);
-  //   setToken(token);
-  //   AsyncStorage.setItem('token', token);
-  //   setIsLoading(false);
-  // };
+  const saveToken = token => {
+    setIsLoading(true);
+    setToken(token);
+    AsyncStorage.setItem('token', token);
+    setIsLoading(false);
+  };
+
+
   const saveUser = user => {
     setIsLoading(true);
     setUser(user);
@@ -60,6 +62,12 @@ export const AuthContextProvider = ({children}) => {
       let token = await AsyncStorage.getItem('token');
       let user = await AsyncStorage.getItem('user');
       let stack_type = await AsyncStorage.getItem('stackType')
+
+      if (!token) {
+        token = 'guest'; // Set to "guest" if no token found
+        await AsyncStorage.setItem('token', token);
+      }
+
       setToken(token);
       setUser(JSON.parse(user ?? '{}'));
       setIsLoading(false);
@@ -86,7 +94,8 @@ export const AuthContextProvider = ({children}) => {
         colorScheme,
         toggleTheme,
         toggleStack,
-        stackType
+        stackType,
+        saveToken
       }}>
       {children}
     </AuthContext.Provider>
