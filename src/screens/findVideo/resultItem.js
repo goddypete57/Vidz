@@ -4,11 +4,12 @@ import { AuthContext } from "../../../context/AuthContext";
 import colors from "../../../assets/colors/colors";
 import { Font2, Fonts } from "../../../assets/constant/Font";
 
-export default FindItem =()=>{
+export default ResultItem =({onpress})=>{
     const {colorScheme} = useContext(AuthContext);
 
     return (
-        <View
+        <TouchableOpacity
+        onPress={()=>{onpress()}}
         style={{
           width: '100%',
           marginTop: 12,
@@ -94,25 +95,9 @@ export default FindItem =()=>{
                 source={require('../../../assets/images/thumbDown.png')}
               />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                marginStart: 27,
-                backgroundColor: colors[colorScheme].iconColor,
-                width: 30,
-                height: 30,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 30 / 2,
-              }}
-              onPress={() => {}}>
-              <Image
-                style={{width: 24, height: 24}}
-                tintColor={colors[colorScheme].background}
-                source={require('../../../assets/images/download.png')}
-              />
-            </TouchableOpacity>
+        
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
 }

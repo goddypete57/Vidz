@@ -17,6 +17,7 @@ import Search from '../../screens/search/Search';
 import VideodetailScreen from '../../screens/search/VideodetailScreen';
 import videoPlayer from '../../screens/search/videoPlayer';
 import FindVideo from '../../screens/findVideo/FindVideo';
+import Scan from '../../screens/home/Camera';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,12 @@ const AuthPassed = () => {
 <Stack.Screen
         name={mainRouts.findVideo}
         component={FindVideo}
+        options={{headerShown: false}}
+      />
+
+<Stack.Screen
+        name={mainRouts.camera}
+        component={Scan}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
